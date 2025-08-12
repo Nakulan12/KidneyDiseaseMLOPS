@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>Analysis Results - MediScan AI</title>
     <meta name="description" content="Medical image analysis results from MediScan AI kidney disease classification system.">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -35,10 +36,47 @@
                 <span class="bar"></span>
                 <span class="bar"></span>
             </div>
+=======
+    <title>Diagnosis Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .result-card {
+            border-left: 5px solid #0d6efd;
+        }
+        .confidence-meter {
+            height: 30px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .confidence-fill {
+            height: 100%;
+            background-color: #0d6efd;
+            width: 0%;
+            transition: width 1s ease-in-out;
+        }
+        .condition-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .cyst { color: #6f42c1; }
+        .normal { color: #198754; }
+        .stone { color: #fd7e14; }
+        .tumor { color: #dc3545; }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">Kidney Disease Classifier</a>
+            <a href="/predict-form" class="btn btn-light ms-auto">New Analysis</a>
+>>>>>>> upstream/main
         </div>
     </nav>
 
     <!-- Main Content -->
+<<<<<<< HEAD
     <main class="main-content">
         <div class="container">
             <!-- Page Header -->
@@ -88,10 +126,89 @@
                                 <div class="meta-item">
                                     <i class="fas fa-shield-alt"></i>
                                     <span>HIPAA Compliant Processing</span>
+=======
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card result-card mb-4">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-md-4 text-center">
+                                {% if result.class == 'Cyst' %}
+                                    <i class="fas fa-water condition-icon cyst"></i>
+                                {% elif result.class == 'Normal' %}
+                                    <i class="fas fa-check-circle condition-icon normal"></i>
+                                {% elif result.class == 'Stone' %}
+                                    <i class="fas fa-gem condition-icon stone"></i>
+                                {% else %}
+                                    <i class="fas fa-exclamation-triangle condition-icon tumor"></i>
+                                {% endif %}
+                                <img src="{{ result.image_path }}" class="img-fluid rounded mb-3">
+                            </div>
+                            <div class="col-md-8">
+                                <h2 class="card-title">Diagnosis Results</h2>
+                                <p class="text-muted">Analyzed on {{ result.timestamp }}</p>
+                                
+                                <div class="alert alert-{% if result.class == 'Normal' %}success{% else %}warning{% endif %}">
+                                    <h4 class="alert-heading">
+                                        {% if result.class == 'Normal' %}
+                                            No Abnormalities Detected
+                                        {% else %}
+                                            Detected: {{ result.class }}
+                                        {% endif %}
+                                    </h4>
+                                    <p>
+                                        Confidence: <strong>{{ result.confidence }}%</strong>
+                                    </p>
+                                </div>
+
+                                <div class="mb-4">
+                                    <h5>Confidence Level</h5>
+                                    <div class="confidence-meter">
+                                        <div class="confidence-fill" style="width: {{ result.confidence }}%"></div>
+                                    </div>
+                                </div>
+
+                                <h5>Detailed Predictions</h5>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <ul class="list-group mb-3">
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Cyst
+                                                <span class="badge bg-purple rounded-pill">{{ result.all_predictions.Cyst|round(1) }}%</span>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Normal
+                                                <span class="badge bg-success rounded-pill">{{ result.all_predictions.Normal|round(1) }}%</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <ul class="list-group mb-3">
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Stone
+                                                <span class="badge bg-warning rounded-pill">{{ result.all_predictions.Stone|round(1) }}%</span>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Tumor
+                                                <span class="badge bg-danger rounded-pill">{{ result.all_predictions.Tumor|round(1) }}%</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="alert alert-info mt-4">
+                                    <h5>Important Note</h5>
+                                    <p class="mb-0">
+                                        This AI-powered diagnosis is for preliminary assessment only. 
+                                        Please consult a medical professional for definitive diagnosis and treatment.
+                                    </p>
+>>>>>>> upstream/main
                                 </div>
                             </div>
                         </div>
                     </div>
+<<<<<<< HEAD
 
                     <!-- Image Display -->
                     <div class="image-display">
@@ -251,3 +368,25 @@
     <script src="{{ url_for('static', filename='js/result.js') }}"></script>
 </body>
 </html>
+=======
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        // Animate the confidence meter on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const fill = document.querySelector('.confidence-fill');
+            const targetWidth = fill.style.width;
+            fill.style.width = '0%';
+            setTimeout(() => {
+                fill.style.width = targetWidth;
+            }, 100);
+        });
+    </script>
+</body>
+</html>
+>>>>>>> upstream/main

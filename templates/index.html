@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>MediScan AI - Advanced Kidney Disease Classification</title>
     <meta name="description" content="Professional AI-powered kidney disease classification system for medical professionals and laboratories.">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -34,11 +35,46 @@
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
+=======
+    <title>Kidney Disease Classifier</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .hero-section {
+            background-color: #e3f2fd;
+            padding: 4rem 0;
+            margin-bottom: 2rem;
+        }
+        .feature-icon {
+            font-size: 2rem;
+            color: #0d6efd;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">Kidney Disease Classifier</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/predict-form">Diagnose</a>
+                    </li>
+                </ul>
+>>>>>>> upstream/main
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
+<<<<<<< HEAD
     <section class="hero">
         <div class="hero-container">
             <div class="hero-content">
@@ -262,3 +298,51 @@
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
+=======
+    <section class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4">AI-Powered Kidney Disease Detection</h1>
+            <p class="lead">Upload a CT scan image to detect cysts, stones, tumors, or normal kidneys</p>
+            <a href="/predict-form" class="btn btn-primary btn-lg">Try Now</a>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-4 mb-4">
+                <div class="feature-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3>Fast Diagnosis</h3>
+                <p>Get results in seconds with our advanced deep learning model.</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3>AI-Powered</h3>
+                <p>State-of-the-art CNN model trained on thousands of CT scans.</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Secure</h3>
+                <p>Your medical data is processed securely and never stored.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light text-center py-4">
+        <div class="container">
+            <p class="mb-0">© 2024 Kidney Disease Classifier | Medical AI Team</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>
+>>>>>>> upstream/main

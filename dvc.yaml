@@ -1,0 +1,47 @@
+stages:
+  data_ingestion:
+    cmd: python src/KidneyClassifier/pipeline/Data_Ingestion_pipeline.py
+    deps:
+      - src/KidneyClassifier/pipeline/Data_Ingestion_pipeline.py
+      - config/config.yaml
+    outs:
+      - artifacts/data_ingestion/CT-KIDNEY-DATASET
+
+  data_preprocessing:
+    cmd: python src/KidneyClassifier/pipeline/Data_PreProcessingCNN.py
+    deps:
+      - src/KidneyClassifier/pipeline/Data_PreProcessingCNN.py
+      - config/config.yaml
+    params:
+      - model_training.input_shape
+      - model_training.learning_rate
+    outs:
+      - artifacts/data_preprocessing
+
+  training:
+    cmd: python src/KidneyClassifier/pipeline/Model_Training_CNN_pipeline.py
+    deps:
+      - src/KidneyClassifier/pipeline/Model_Training_CNN_pipeline.py
+      - config/config.yaml
+      - artifacts/data_ingestion/CT-KIDNEY-DATASET
+      - artifacts/data_preprocessing
+    params:
+      - model_training.input_shape
+      - model_training.epochs
+      - model_training.batch_size
+    outs:
+      - artifacts/model_training/kidney_model
+
+  evaluation:
+    cmd: python src/KidneyClassifier/pipeline/CNN_Evaluation_pipeline.py
+    deps:
+      - src/KidneyClassifier/pipeline/CNN_Evaluation_pipeline.py
+      - config/config.yaml
+      - artifacts/data_ingestion/CT-KIDNEY-DATASET
+      - artifacts/model_training/kidney_model
+    params:
+      - model_evaluation.input_shape
+      - model_evaluation.batch_size
+    metrics:
+      - artifacts/model_evaluation/metrics.json:
+          cache: false

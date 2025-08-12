@@ -1,16 +1,4 @@
-augmentation: true
-image_size: [224, 224, 3]
-batch_size: 16
-include_top: false
-epochs: 20
-classes: 4
-weights: imagenet
-learning_rate: 0.001
-dropout_rate: 0.5
-optimizer: adam
-validation_split: 0.2
-early_stopping: true
-early_stopping_patience: 5
+
 
 model_training:
   input_shape: [28, 28, 3]
@@ -20,5 +8,9 @@ model_training:
   learning_rate: 0.001
 
 model_evaluation:
-  batch_size: 32
   target_metric: accuracy
+  input_shape: [28, 28, 3]
+  epochs: 50
+  batch_size: 32
+  validation_split: 0.2
+  learning_rate: 0.001
